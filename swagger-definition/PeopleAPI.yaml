@@ -1,0 +1,90 @@
+swagger: "2.0"
+info:
+  description: "People api for Mobile Software Laboratory course."
+  version: "1.0.0"
+  title: "People API"
+host: "randomuser.me"
+basePath: "/"
+tags:
+- name: "People"
+- name: "People - MOCK"
+- name: "Category - MOCK"
+
+schemes:
+- "https"
+- "http"
+paths:
+
+definitions:
+  Dob:
+    type: object
+    properties:
+      date: 
+        type: string
+  Name:
+    type: object
+    properties:
+      first: 
+        type: string
+      last: 
+        type: string
+  Street:
+    type: object
+    properties:
+      name: 
+        type: string
+      number: 
+        type: number
+  Picture:
+    type: object
+    properties:
+      medium: 
+        type: string
+  Location:
+    type: object
+    properties:
+      street:
+        $ref: '#/definitions/Street'
+      city: 
+        type: string
+      state: 
+        type: string
+      country: 
+        type: string
+      postcode: 
+        type: string
+  Person:
+    type: object
+    properties:
+      gender: 
+        type: string
+        enum:
+          - male
+          - female
+      name:
+        $ref: '#/definitions/Name'
+      location:
+        $ref: '#/definitions/Location'
+      email:
+        type: string
+      dob: 
+        $ref: '#/definitions/Dob'
+      phone:
+        type: string
+      picture:
+        $ref: '#/definitions/Picture'
+      nat:
+        type: string
+  Category:
+    type: object
+    properties:
+      name:
+        type: string
+      people:
+        type: array
+        items: 
+          type: Person
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
