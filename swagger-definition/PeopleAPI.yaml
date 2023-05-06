@@ -1,0 +1,200 @@
+swagger: "2.0"
+info:
+  description: "People api for Mobile Software Laboratory course."
+  version: "1.0.0"
+  title: "People API"
+host: "randomuser.me"
+basePath: "/"
+tags:
+- name: "People"
+- name: "People - MOCK"
+
+schemes:
+- "https"
+paths:
+  /people:
+    get:
+      tags:
+      - "People"
+      summary: "Get People."
+      description: "Returns a list of random people."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "inc"
+        in: "query"
+        description: "Specify the attributes to be fetched."
+        type: "string"
+      responses:
+        "200":
+          description: "Successful operation."
+          schema:
+            type: array
+            items: 
+              $ref: "#/definitions/Person"
+        "404":
+          description: "The resource you requested could not be found."
+    post:
+      tags:
+      - "People - MOCK"
+      summary: "Add a person."
+      description: "Creates a Person."
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "body"
+        in: "body"
+        description: "The Person to add."
+        required: true
+        schema:
+          $ref: "#/definitions/Person"
+      responses:
+        "201":
+          description: "Person successfully added."
+        "404":
+          description: "The resource you requested could not be found."
+  /people/{id}:
+    get:
+      tags:
+      - "People - MOCK"
+      summary: "Get Person details."
+      description: "Returns details of Person specified with the given ID."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the Person to return."
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        "200":
+          description: "Successful operation."
+          schema:
+            $ref: "#/definitions/Person"
+        "404":
+          description: "The resource you requested could not be found."
+    put:
+      tags:
+      - "People - MOCK"
+      summary: "Edit person."
+      description: "Updates the Person with the given ID."
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the Person to be edited."
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "body"
+        in: "body"
+        description: "The edited Person."
+        required: true
+        schema:
+          $ref: "#/definitions/Person"
+      responses:
+        "204":
+          description: "Person successfully edited."
+        "404":
+          description: "The resource you requested could not be found."
+    delete:
+      tags:
+      - "People - MOCK"
+      summary: "Delete Person."
+      description: "Deletes the Person with the given ID."
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the Person to be deleted."
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        "204":
+          description: "Person successfully deleted."
+        "404":
+          description: "The resource you requested could not be found."
+definitions:
+  Dob:
+    type: object
+    properties:
+      date: 
+        type: string
+  Name:
+    type: object
+    properties:
+      first: 
+        type: string
+      last: 
+        type: string
+  Street:
+    type: object
+    properties:
+      name: 
+        type: string
+      number: 
+        type: number
+  Picture:
+    type: object
+    properties:
+      medium: 
+        type: string
+  Location:
+    type: object
+    properties:
+      street:
+        $ref: '#/definitions/Street'
+      city: 
+        type: string
+      state: 
+        type: string
+      country: 
+        type: string
+      postcode: 
+        type: string
+  Person:
+    type: object
+    properties:
+      gender: 
+        type: string
+        enum:
+          - male
+          - female
+      name:
+        $ref: '#/definitions/Name'
+      location:
+        $ref: '#/definitions/Location'
+      email:
+        type: string
+      dob: 
+        $ref: '#/definitions/Dob'
+      phone:
+        type: string
+      picture:
+        $ref: '#/definitions/Picture'
+      nat:
+        type: string
+  Category:
+    type: object
+    properties:
+      name:
+        type: string
+      people:
+        type: array
+        items: 
+          type: object
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
