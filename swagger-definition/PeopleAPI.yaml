@@ -29,9 +29,7 @@ paths:
         "200":
           description: "Successful operation."
           schema:
-            type: array
-            items: 
-              $ref: "#/definitions/Person"
+            $ref: "#/definitions/APIResult"
         "404":
           description: "The resource you requested could not be found."
     post:
@@ -185,6 +183,13 @@ definitions:
         $ref: '#/definitions/Picture'
       nat:
         type: string
+  APIResult:
+    type: object
+    properties:
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/Person'
   Category:
     type: object
     properties:
@@ -193,7 +198,7 @@ definitions:
       people:
         type: array
         items: 
-          type: object
+          $ref: '#/definitions/Person'
 
 externalDocs:
   description: "Find out more about Swagger"
