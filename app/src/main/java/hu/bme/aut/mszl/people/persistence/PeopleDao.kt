@@ -1,14 +1,40 @@
 package hu.bme.aut.mszl.people.persistence
 
-import hu.bme.aut.mszl.people.model.Category
-import hu.bme.aut.mszl.people.model.Person
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
+import hu.bme.aut.mszl.people.persistence.model.CategoryEntity
+import hu.bme.aut.mszl.people.persistence.model.CategoryWithPeople
+import hu.bme.aut.mszl.people.persistence.model.PersonEntity
 
+@Dao
 interface PeopleDao {
-    fun getCategories(): List<Category>
+    /// People
+    @Query("SELECT * FROM categories WHERE id = :categoryId")
+    fun getPeople(categoryId: Long): CategoryEntity
 
-    fun getPeople(categoryId: Long): List<Person>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addPerson(person: PersonEntity)
 
-    fun savePerson(person: Person, categoryId: Long)
+    @Delete
+    fun deletePerson(person: PersonEntity)
 
-    fun deletePerson()
+    /// Categories
+    @Query("SELECT * FROM categories")
+    fun getCategories(): List<CategoryEntity>
+
+    @Insert
+    fun addCategory(category: CategoryEntity)
+
+    @Delete
+    fun deleteCategory(category: CategoryEntity)
+
+
+    /// One-to-many relationship
+    @Transaction
+    @Query("SELECT * FROM categories")
+    fun getCategoriesWithPeople(): List<CategoryWithPeople>
 }
