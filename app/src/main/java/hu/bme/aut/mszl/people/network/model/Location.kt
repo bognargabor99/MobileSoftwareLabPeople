@@ -1,7 +1,9 @@
-package hu.bme.aut.mszl.people.model
+package hu.bme.aut.mszl.people.network.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Location(
-    val id: Long,
     val street: Street,
     val city: String,
     val state: String,
