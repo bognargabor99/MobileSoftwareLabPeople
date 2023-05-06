@@ -12,7 +12,7 @@ tags:
 schemes:
 - "https"
 paths:
-  /people:
+  /:
     get:
       tags:
       - "People"
@@ -53,7 +53,7 @@ paths:
           description: "Person successfully added."
         "404":
           description: "The resource you requested could not be found."
-  /people/{id}:
+  /{id}:
     get:
       tags:
       - "People - MOCK"
