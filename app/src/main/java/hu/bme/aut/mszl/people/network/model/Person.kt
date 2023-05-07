@@ -1,7 +1,9 @@
-package hu.bme.aut.mszl.people.model
+package hu.bme.aut.mszl.people.network.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Person(
-    val id: Long,
     val gender: String,
     val name: Name,
     val location: Location,
