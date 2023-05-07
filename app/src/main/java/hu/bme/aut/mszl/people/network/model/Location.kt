@@ -8,5 +8,7 @@ data class Location(
     val city: String,
     val state: String,
     val country: String,
-    val postcode: String,
-)
+    val postcode: String) {
+    override fun toString(): String =
+        "${street.number} ${street.name}, $postcode $city, $state, $country"
+}

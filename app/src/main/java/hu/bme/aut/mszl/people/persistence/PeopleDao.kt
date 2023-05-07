@@ -13,8 +13,11 @@ import hu.bme.aut.mszl.people.persistence.model.PersonEntity
 @Dao
 interface PeopleDao {
     /// People
-    @Query("SELECT * FROM categories WHERE id = :categoryId")
-    fun getPeople(categoryId: Long): CategoryEntity
+    @Query("SELECT * FROM people WHERE categoryId = :categoryId")
+    fun getPeople(categoryId: Long): List<PersonEntity>
+
+    @Query("SELECT * FROM people WHERE id = :id")
+    fun getPerson(id: Long): PersonEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addPerson(person: PersonEntity)
@@ -23,6 +26,9 @@ interface PeopleDao {
     fun deletePerson(person: PersonEntity)
 
     /// Categories
+    @Query("SELECT * FROM categories WHERE name = :categoryName")
+    fun getCategory(categoryName: String): CategoryWithPeople
+
     @Query("SELECT * FROM categories")
     fun getCategories(): List<CategoryEntity>
 
