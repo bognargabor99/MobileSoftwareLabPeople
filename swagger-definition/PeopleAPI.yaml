@@ -4,7 +4,7 @@ info:
   version: "1.0.0"
   title: "People API"
 host: "randomuser.me"
-basePath: "/"
+basePath: "/api"
 tags:
 - name: "People"
 - name: "People - MOCK"
@@ -21,10 +21,10 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "inc"
+      - name: "results"
         in: "query"
-        description: "Specify the attributes to be fetched."
-        type: "string"
+        description: "Specify number of People to be fetched."
+        type: "integer"
       responses:
         "200":
           description: "Successful operation."
@@ -189,15 +189,6 @@ definitions:
       results:
         type: array
         items:
-          $ref: '#/definitions/Person'
-  Category:
-    type: object
-    properties:
-      name:
-        type: string
-      people:
-        type: array
-        items: 
           $ref: '#/definitions/Person'
 
 externalDocs:
