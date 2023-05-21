@@ -1,6 +1,5 @@
 package hu.bme.aut.mszl.people.ui.screen.details
 
-import hu.bme.aut.mszl.people.network.model.Person
 import hu.bme.aut.mszl.people.persistence.PeopleDao
 import hu.bme.aut.mszl.people.persistence.model.CategoryEntity
 import hu.bme.aut.mszl.people.persistence.model.PersonEntity
@@ -11,28 +10,23 @@ import javax.inject.Inject
 class PeopleDetailsRepository @Inject constructor(
     private val peopleDao: PeopleDao
 ) {
-    suspend fun addCategory(name: String) {
+    suspend fun addCategory(name: String) =
         withContext(Dispatchers.IO) {
             peopleDao.addCategory(CategoryEntity(name = name))
         }
-    }
 
-    suspend fun addPersonToCategory(categoryId: Long, person: Person) {
-        val personEntity = PersonEntity(
-            categoryId = categoryId,
-            gender = person.gender,
-            name = person.name.toString(),
-            location = person.location.toString(),
-            email = person.email,
-            dob = person.dob.date,
-            phone = person.phone,
-            picture_url = person.picture.medium,
-            nat = person.nat
-        )
+
+    suspend fun addPersonToCategory(categoryId: Long, person: PersonEntity): Long =
         withContext(Dispatchers.IO) {
-            peopleDao.addPerson(personEntity)
+            person.categoryId = categoryId
+            peopleDao.addPerson(person)
         }
-    }
+
+    suspend fun getCategoryByName(categoryName: String) =
+        withContext(Dispatchers.IO) {
+            peopleDao.getCategory(categoryName).category
+        }
+
 
     suspend fun getCategoryNames() =
         withContext(Dispatchers.IO) {

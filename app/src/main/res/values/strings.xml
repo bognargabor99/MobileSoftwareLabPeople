@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">People</string>
+    <string name="people">People</string>
+    <string name="refresh">Refresh</string>
+    <string name="something_wrong">Something went wrong. Check your netwok connection.</string>
+    <string name="loading">Fetching people…</string>
+    <string name="actions">Actions</string>
+    <string name="save">Save</string>
+    <string name="properties">Properties</string>
+    <string name="choose_category">Choose a category</string>
+    <string name="choose_category_detailed">Choose a category in order to save the person to that category. You can create a new one also.</string>
+    <string name="new_category">New category…</string>
+    <string name="choose">Choose</string>
+    <string name="new_str">New</string>
+    <string name="create">Create</string>
+    <string name="create_category">Create category</string>
+    <string name="category">Category</string>
+    <string name="create_category_detailed">Create a category to save the person to. Examples: Family, Work, Friends</string>
+    <string name="delete">Delete</string>
+    <string name="load">Load</string>
+    <string name="choose_category_view_detailed">Choose a category to view</string>
+    <string name="fetch">Fetch from internet</string>
 </resources>

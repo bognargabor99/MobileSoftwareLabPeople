@@ -20,7 +20,7 @@ interface PeopleDao {
     fun getPerson(id: Long): PersonEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addPerson(person: PersonEntity)
+    fun addPerson(person: PersonEntity): Long
 
     @Delete
     fun deletePerson(person: PersonEntity)
@@ -33,7 +33,7 @@ interface PeopleDao {
     fun getCategories(): List<CategoryEntity>
 
     @Insert
-    fun addCategory(category: CategoryEntity)
+    fun addCategory(category: CategoryEntity): Long
 
     @Delete
     fun deleteCategory(category: CategoryEntity)

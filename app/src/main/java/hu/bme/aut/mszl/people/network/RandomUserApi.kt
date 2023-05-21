@@ -11,7 +11,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RandomUserApi {
-    @GET
+    @GET(".")
     suspend fun getPeople(
         @Query("results") results: Int = 50
     ): APIResult

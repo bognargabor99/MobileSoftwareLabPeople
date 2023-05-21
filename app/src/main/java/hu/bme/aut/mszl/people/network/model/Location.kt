@@ -1,6 +1,7 @@
 package hu.bme.aut.mszl.people.network.model
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
 
 @Serializable
 data class Location(
@@ -8,7 +9,8 @@ data class Location(
     val city: String,
     val state: String,
     val country: String,
-    val postcode: String) {
+    val postcode: JsonElement
+) {
     override fun toString(): String =
-        "${street.number} ${street.name}, $postcode $city, $state, $country"
+        "${street.number} ${street.name}, $city, $country"
 }
